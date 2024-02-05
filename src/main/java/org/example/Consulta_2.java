@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 public class Consulta_2 {
     public static void main(String[] args) {
 
-        System.out.println(getFirstSeriesId());
+        //System.out.println(getFirstSeriesId());
         System.out.println(getPosterUrl());
     }
 
@@ -17,7 +17,7 @@ public class Consulta_2 {
         String seriesId = "";
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/series/byYear/1995/"))
+                    .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/series/idbyTitle/Dragon%20Ball/"))
                     .header("X-RapidAPI-Key", APIConfig.API_KEY)
                     .header("X-RapidAPI-Host", "moviesminidatabase.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -35,7 +35,7 @@ public class Consulta_2 {
         String posterUrl = "";
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/series/id/tt0111976/"))
+                    .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/series/id/tt0280249/"))
                     .header("X-RapidAPI-Key", APIConfig.API_KEY)
                     .header("X-RapidAPI-Host", "moviesminidatabase.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())

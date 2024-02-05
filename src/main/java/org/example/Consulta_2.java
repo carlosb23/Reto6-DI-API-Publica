@@ -31,8 +31,8 @@ public class Consulta_2 {
         return seriesId;
     }
 
-    public static String getPosterUrl() {
-        String posterUrl = "";
+    public static JSONObject getPosterUrl() {
+        JSONObject resultObject = new JSONObject();
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/series/id/tt0280249/"))
@@ -42,10 +42,15 @@ public class Consulta_2 {
                     .build();
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject jsonResponse = new JSONObject(response.body());
-            System.out.println(jsonResponse.toString(2));
+            int startYear = jsonResponse.getJSONObject("results").getInt("start_year");
+            String bannerUrl = jsonResponse.getJSONObject("results").getString("banner");
+
+            System.out.println("start_year: " + startYear);
+            System.out.print("banner: " +  bannerUrl);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return posterUrl;
+        return resultObject;
     }
 }

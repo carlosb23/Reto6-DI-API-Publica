@@ -51,8 +51,8 @@ public class Consulta_4 {
         return actor;
     }
 
-    public static String getactordescription() {
-        String actorsigno = "";
+    public static JSONObject getactordescription() {
+        JSONObject resultObject = new JSONObject();
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://moviesminidatabase.p.rapidapi.com/actor/id/nm0154226/"))
@@ -62,10 +62,15 @@ public class Consulta_4 {
                     .build();
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject jsonResponse = new JSONObject(response.body());
-            System.out.println(jsonResponse.toString(2));
+
+            String cumple = jsonResponse.getJSONObject("results").getString("birth_date");
+            String signo = jsonResponse.getJSONObject("results").getString("star_sign");
+
+            System.out.println("birth_date: " + cumple);
+            System.out.print("star_sign: " +  signo);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return actorsigno;
+        return resultObject;
     }
 }
